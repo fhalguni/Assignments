@@ -1,0 +1,252 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+html {
+  scroll-behavior: smooth;
+}
+nav {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 10%;
+  justify-content: space-between;
+  z-index: 999;
+}
+
+.list ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  gap: 30px;
+}
+
+ul > li {
+  padding: 20px 20px;
+}
+
+li > a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 10px;
+}
+.container {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url("https://th.bing.com/th/id/OIP.LUBgZIpv-L6PzQwK29QHlAHaEK?w=259&h=180&c=7&r=0&o=5&pid=1.7");
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+  width: 100%;
+  position: relative;
+  background-position: center;
+}
+.homeContent {
+  position: absolute;
+  top: 40%;
+  margin: 0px 60px;
+  /* right: 20%; */
+  height: 70px;
+  width: 500px;
+  border: 1px solid blue;
+  padding: 30px;
+  border-radius: 20px;
+  background: lightblue;
+  box-shadow: 10px 10px 10px 10px rgb(40, 40, 158);
+}
+.third {
+  position: relative;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url(contact.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  place-items: center;
+}
+.footer {
+  height: 5vh;
+  background-color: black;
+  position: relative;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.copy-write {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  color: white;
+  padding: 10px;
+}
+
+.h1 {
+  padding: 20px;
+  color: black;
+}
+
+.form {
+  padding: 30px;
+  height: 50vh;
+  width: 30%;
+  background-color: white;
+  border: 2px solid darkblue inset;
+  border-radius: 30px;
+  box-shadow: 0px 0px 10px rgb(66, 105, 211);
+}
+
+.email {
+  padding: 20px;
+}
+
+.message {
+  padding: 20px;
+}
+
+label {
+  color: black;
+}
+
+input {
+  height: 20px;
+  width: 70%;
+  border-radius: 10px;
+  padding: 10px;
+}
+textarea {
+  border-radius: 10px;
+}
+textarea::placeholder {
+  padding: 10px;
+}
+
+.button {
+  background-color: darkblue;
+  color: white;
+  padding: 10px;
+  height: 40px;
+  width: 40%;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+  position: absolute;
+  top: 100%;
+  right: 30%;
+}
+.div {
+  display: flex;
+  position: relative;
+  justify-content: start;
+  flex-direction: column;
+}
+.productList {
+  position: absolute;
+  display: grid;
+  align-items: center;
+}
+
+.main-card {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  border-radius: 20px;
+  padding: 0px 30px;
+}
+
+.productSort {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+}
+.RangeSort {
+  position: absolute;
+  right: 40px;
+  top: 60px;
+}
+
+.products {
+  position: relative;
+  height: max-content;
+}
+
+.card,
+.card1,
+.p1 {
+  display: flex;
+  flex-direction: row;
+}
+.p1 {
+  height: 60%;
+  padding: 30px;
+  margin: 60px 30px;
+  border: 1px solid green;
+  box-shadow: 1px 1px 10px rgba(0, 128, 0, 0.5);
+  border-radius: 20px;
+  background-color: rgb(216, 231, 216);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.p1:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px green;
+}
+.AddToCart {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.AddToCart:hover {
+  background-color: darkgreen;
+}
+
+.sidebar {
+  position: absolute;
+  right: 40px;
+  width: 250px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-right: 1px solid #ccc;
+}
+.filter-section {
+  margin-bottom: 20px;
+}
+.filter-section h2 {
+  margin-bottom: 10px;
+}
+.filter-category,
+.filter-range {
+  margin-bottom: 15px;
+}
+.filter-category label,
+.filter-range label {
+  display: block;
+  margin-bottom: 5px;
+}
+.filter-category select,
+.filter-range select {
+  width: 100%;
+  padding: 5px;
+}
+
+.centered-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}

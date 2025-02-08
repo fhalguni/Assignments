@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Guess number</h1>
+        <label for="" id="guess">Enter Number between 1 to 10</label>
+        <input type="number" id="inputedValue" >
+        <button onclick="guessNumber()" id="count">guess</button>
+    </center>
+</body>
+<script>
+    let randomNumber=document.getElementById('random');
+    
+   randomNumber=Math.round(Math.random()*10)
+   let count=1;
+   console.log(randomNumber)
+   
+   function guessNumber(){
+    if(document.getElementById('inputedValue').value<randomNumber){
+        window.alert("The number is greater")
+        count++;
+        if(count>5){
+       
+        document.getElementById("count").style.display="none"
+        window.alert("You loose")
+    }
+        console.log(count)
+    }
+    else if(document.getElementById('inputedValue').value>randomNumber){
+        window.alert("The number is smaller")
+        count++;
+        if(count>5){
+        
+        document.getElementById("count").style.display="none"
+        window.alert("You loose")
+    }
+        console.log(count)
+    }
+
+    
+    else{
+        document.getElementById("guess").innerText="Your guess is right! congratulations"
+    }
+
+   }
+   
+
+   
+   
+
+</script>
+</html>

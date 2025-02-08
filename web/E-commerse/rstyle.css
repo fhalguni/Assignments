@@ -1,0 +1,62 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url("https://th.bing.com/th/id/OIP.XyLxeVM9E4O1IYRDKwrbwAHaDe?w=329&h=163&c=7&r=0&o=5&pid=1.7");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px 10px rgb(29, 25, 29);
+  width: 400px;
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  color: white;
+  display: block;
+  margin-bottom: 8px;
+}
+
+input {
+  color: black;
+  width: 80%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+button {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+form {
+  display: grid;
+  place-items: center;
+}

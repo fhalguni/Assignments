@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank Account Operations</title>
+  </head>
+  <body>
+    <script>
+      function createAccount(initialAmount) {
+        let balance = initialAmount;
+
+        return {
+          withdraw: function (amount) {
+            if (amount > balance) {
+              console.log("Insufficient balance. Transaction failed.");
+            } else {
+              balance = balance - amount;
+              console.log(
+                "Withdrawal successful. Balance remaining: " + balance
+              );
+            }
+          },
+          deposit: function (amount) {
+            balance = balance + amount;
+            console.log("Deposit successful. New balance: " + balance);
+          },
+          getBalance: function () {
+            console.log("Current balance: " + balance);
+          },
+        };
+      }
+
+      let account = createAccount(20000);
+
+      account.withdraw(10000);
+      account.deposit(5000);
+      account.getBalance();
+    </script>
+  </body>
+</html>

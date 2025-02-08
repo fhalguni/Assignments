@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      (function calculateDiscount(amount) {
+        price = amount - amount * 0.1;
+        console.log("product price:" + amount);
+        console.log("Discount rate: 10%");
+        console.log("Price After discount:" + price);
+      })(prompt("Enter amount:"));
+
+      function setDiscountRate(amount) {
+        return function discount(rate) {
+          price = amount - amount * (rate / 100);
+          console.log("product price:" + amount);
+          console.log("Discount rate: " + rate + "%");
+          console.log("Price after discount:" + price);
+        };
+      }
+      let amount = setDiscountRate(prompt("Enter Amount:"));
+      amount(prompt("Enter rate:"));
+
+      let add = (a, b) => a + b;
+      console.log(add(3, 4));
+    </script>
+  </body>
+</html>

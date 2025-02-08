@@ -1,0 +1,150 @@
+<script>
+  class Package {
+    constructor(id, weight, destination) {
+      this.id = id;
+      this.weight = weight;
+      this.destination = destination;
+    }
+  }
+
+  class Shipment {
+    constructor(id, packages = [], status = "In transit", courier = null) {
+      this.id = id;
+      this.packages = packages;
+      this.status = status;
+      this.courier = courier;
+    }
+
+    addPackage(pkg) {
+      this.packages.push(pkg);
+    }
+
+    assignCourier(courier) {
+      this.courier = courier;
+    }
+
+    updateStatus(status) {
+      this.status = status;
+    }
+  }
+
+  class Courier {
+    constructor(id, name, vehicleDetails) {
+      this.id = id;
+      this.name = name;
+      this.vehicleDetails = vehicleDetails;
+    }
+  }
+
+  class ShippingCompany {
+    constructor() {
+      this.packages = [];
+      this.shipments = [];
+      this.couriers = [];
+    }
+
+    addPackage(pkg) {
+      this.packages.push(pkg);
+    }
+
+    registerCourier(courier) {
+      this.couriers.push(courier);
+    }
+
+    createShipment(shipment) {
+      this.shipments.push(shipment);
+    }
+
+    trackShipment(shipmentId) {
+      return this.shipments.find((shipment) => shipment.id === shipmentId);
+    }
+  }
+
+  const company = new ShippingCompany();
+
+  function showMenu() {
+    console.log("1. Add Package");
+    console.log("2. Register Courier");
+    console.log("3. Create Shipment");
+    console.log("4. View All Packages");
+    console.log("5. View All Couriers");
+    console.log("6. Track Shipment");
+    console.log("7. Exit");
+  }
+
+  let choice;
+  do {
+    showMenu();
+    choice = parseInt(prompt("Enter your choice: "));
+    switch (choice) {
+      case 1:
+        const packageId = +prompt("Enter Package ID: ");
+        const weight = prompt("Enter Package Weight: ");
+        const destination = prompt("Enter Package Destination: ");
+        const pkg = new Package(packageId, weight, destination);
+        //Add the package in company
+        company.addPackage(pkg);
+        console.log("Package added successfully!");
+        break;
+      case 2:
+        const courierId = +prompt("Enter Courier ID: ");
+        const courierName = prompt("Enter Courier Name: ");
+        const vehicleDetails = prompt("Enter Vehicle Details: ");
+        const courier = new Courier(courierId, courierName, vehicleDetails);
+        company.registerCourier(courier);
+        console.log("Courier registered successfully!");
+        break;
+      case 3:
+        const shipmentId = +prompt("Enter Shipment ID: ");
+        const shipment = new Shipment(shipmentId);
+        let addMorePackages = true;
+        while (addMorePackages) {
+          const packageId = +prompt("Enter Package ID to add to Shipment: ");
+          const pkg = company.packages.find((pkg) => pkg.id === packageId);
+          if (pkg) {
+            shipment.add;
+            Package(pkg);
+            console.log("Package added to shipment!");
+          } else {
+            console.log("Package not found!");
+          }
+          addMorePackages = prompt("Add another package? (yes/no)") === "yes";
+        }
+        const courierIdForShipment = +prompt(
+          "Enter Courier ID to assign to Shipment: "
+        );
+        const courierForShipment = company.couriers.find(
+          (courier) => courier.id === courierIdForShipment
+        );
+        if (courierForShipment) {
+          const assign = shipment.assignCourier(courierForShipment);
+          console.log("Courier assigned to shipment!");
+        } else {
+          console.log("Courier not found!");
+        }
+        company.createShipment(shipment);
+        console.log("Shipment created successfully!");
+        break;
+      case 4:
+        console.log("All Packages: ", company.packages);
+        break;
+      case 5:
+        console.log("All Couriers: ", company.couriers);
+        break;
+      case 6:
+        const shipmentIdToTrack = +prompt("Enter Shipment ID to track: ");
+        const shipmentToTrack = company.trackShipment(shipmentIdToTrack);
+        if (shipmentToTrack) {
+          console.log("Shipment Status: ", shipmentToTrack.status);
+        } else {
+          console.log("Shipment not found!");
+        }
+        break;
+      case 7:
+        console.log("Exiting...");
+        break;
+      default:
+        console.log("Invalid choice. Please try again.");
+    }
+  } while (choice !== 7);
+</script>

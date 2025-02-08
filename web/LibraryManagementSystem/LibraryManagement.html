@@ -1,0 +1,204 @@
+<script>
+  class Library {
+    Books = [];
+    Members = [];
+
+    //for add book
+    addBook(book) {
+      this.Books.push(book);
+    }
+
+    //for register Member
+    registerMember(member) {
+      this.Members.push(member);
+    }
+  }
+
+  class Member {
+    #id;
+    #name;
+    borrowedBooks = new Map();
+
+    constructor(id, name) {
+      this.#id = id;
+      this.#name = name;
+    }
+
+    getId() {
+      return this.#id;
+    }
+
+    getName() {
+      return this.#name;
+    }
+
+    //For borrow the book using map
+    borrowBook(book) {
+      this.borrowedBooks.set(book.getId(), book);
+    }
+
+    //return book based on bookId
+    returnBook(bookId) {
+      if (this.borrowedBooks.has(bookId)) {
+        const book = this.borrowedBooks.get(bookId);
+        book.return();
+        this.borrowedBooks.delete(bookId);
+        return book;
+      } else {
+        return null;
+      }
+    }
+
+    //display borrowed book
+    displayBorrowedBooks() {
+      if (this.borrowedBooks.size === 0) {
+        console.log(`${this.getName()} has no borrowed books.`);
+      } else {
+        console.log(`${this.getName()} has borrowed the following books:`);
+        this.borrowedBooks.forEach((book) => {
+          console.log(`- ${book.getTitle()} by ${book.getAuthor()}`);
+        });
+      }
+    }
+  }
+
+  class Book {
+    #id;
+    #title;
+    #author;
+    #isAvailable = true;
+
+    constructor(id, title, author, isAvailable = true) {
+      this.#id = id;
+      this.#title = title;
+      this.#author = author;
+      this.#isAvailable = isAvailable;
+    }
+
+    getId() {
+      return this.#id;
+    }
+
+    getTitle() {
+      return this.#title;
+    }
+
+    getAuthor() {
+      return this.#author;
+    }
+
+    isAvailable() {
+      return this.#isAvailable;
+    }
+
+    borrow() {
+      this.#isAvailable = false;
+    }
+
+    return() {
+      this.#isAvailable = true;
+    }
+  }
+
+  const library = new Library();
+
+  let y = 0;
+  while (y !== 1) {
+    window.alert(
+      "1.Add Books  2.Register Members 3.Borrow book 4.Return book 5.Display borrowed books"
+    );
+    let choice = +prompt("Enter your choice:");
+
+    switch (choice) {
+      case 1: {
+        let id = +prompt("Enter Book Id:");
+        let title = prompt("Enter book title:");
+        let author = prompt("Enter author:");
+        let isAvailable =
+          prompt("Is book available (true or false):") === "true";
+
+        const book = new Book(id, title, author, isAvailable);
+        library.addBook(book);
+        window.alert("The book added successfully");
+        console.log(library.Books);
+        break;
+      }
+      case 2: {
+        let id = +prompt("Enter Member id:");
+        let name = prompt("Enter member name:");
+
+        const member = new Member(id, name);
+        library.registerMember(member);
+        window.alert("Member registered successfully");
+        console.log(library.Members);
+        break;
+      }
+      case 3: {
+        let bookId = +prompt("Enter BookId:");
+        let memberId = +prompt("Enter memberId:");
+        //borrow book based on bookId and member Id
+        const book = library.Books.find((book) => book.getId() === bookId);
+        const member = library.Members.find(
+          (member) => member.getId() === memberId
+        );
+
+        if (book && member) {
+          if (book.isAvailable()) {
+            book.borrow();
+            member.borrowBook(book);
+            window.alert(
+              `${book.getTitle()} is borrowed by ${member.getName()}`
+            );
+          } else {
+            window.alert("Book is not available");
+          }
+        } else {
+          window.alert("Book or Member not found");
+        }
+        break;
+      }
+      case 4: {
+        //return book based on bookid and member id
+        let bookId = +prompt("Enter BookId:");
+        let memberId = +prompt("Enter memberId:");
+
+        const member = library.Members.find(
+          (member) => member.getId() === memberId
+        );
+
+        if (member) {
+          const book = member.returnBook(bookId);
+          if (book) {
+            window.alert(
+              `${book.getTitle()} is returned by ${member.getName()}`
+            );
+          } else {
+            window.alert("Book not found in borrowed books");
+          }
+        } else {
+          window.alert("Member not found");
+        }
+        break;
+      }
+      case 5: {
+        //display borrowed book based on memberId
+        let memberId = +prompt("Enter memberId:");
+        const member = library.Members.find(
+          (member) => member.getId() === memberId
+        );
+
+        if (member) {
+          member.displayBorrowedBooks();
+        } else {
+          window.alert("Member not found");
+        }
+        break;
+      }
+      default: {
+        y = 1;
+        break;
+      }
+    }
+    y = +prompt("Do you want to continue? If no, press 1. If yes, press 0");
+  }
+</script>
